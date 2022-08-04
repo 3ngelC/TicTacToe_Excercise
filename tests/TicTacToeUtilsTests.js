@@ -5,7 +5,6 @@ describe("the function", function () {
   it("works", function () {
     var ticTacToeUtils = new tictactoeUtils.TicTacToeUtils();
     var board = ticTacToeUtils.buildBoard(2);
-    console.log("G", board);
     var expectedBoard = {
         board: [
             [
@@ -28,10 +27,44 @@ describe("the function", function () {
   });
 });
 
+
 //just test
 const a = 8;
 console.log ("a:", a);
 
 
 
+
+
+describe("compare tictactoe board size", function () {
+  it("works", function () {
+    var ticTacToeUtils = new tictactoeUtils.TicTacToeUtils();
+    var board = ticTacToeUtils.buildBoard(2);
+        var expectedBoardSize = 2;
+        let currentBoardSize = board.board.length;
+    assert.equal(expectedBoardSize, currentBoardSize);
+  });
+});
+
+describe("setup players", function () {
+  it("setupPlayers", function () {
+    const ticTacToeUtils = new tictactoeUtils.TicTacToeUtils();
+    let currentConfiguration = ticTacToeUtils.setupPlayers(["Rocio", "Pedro"])
+    
+    let containsRocioPlayers = currentConfiguration.find(player => { return player.type === "Rocio"});
+    assert.notEqual(containsRocioPlayers, null);
+
+    let containsPedroPlayers = currentConfiguration.find(player => { return player.type === "Pedro"});
+    assert.notEqual(containsPedroPlayers, null);
+  });
+});
+
+describe("setup more than two players", function () {
+  it("setupPlayers", function () {
+    const ticTacToeUtils = new tictactoeUtils.TicTacToeUtils();
+    let players = ["Rocio", "Pedro", "Roberto"];
+    let currentConfiguration = ticTacToeUtils.setupPlayers(players)
+    assert.equal(0, currentConfiguration.length);
+  });
+});
 
